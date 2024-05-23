@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct User: Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var favoriteColor: String
+    var birthDate: Date
+    var favoriteCity: String
+    var favoriteNumber: Int
+    var location: String
+}
