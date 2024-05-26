@@ -20,8 +20,10 @@
 		6CE4F3EA2BFF57A400B42ECB /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3E92BFF57A400B42ECB /* MapViewModel.swift */; };
 		6CE4F3ED2BFF57C000B42ECB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3EC2BFF57C000B42ECB /* User.swift */; };
 		6CE4F3F02BFF57E400B42ECB /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3EF2BFF57E400B42ECB /* LocalizationService.swift */; };
-		6CE4F3F22BFF57F700B42ECB /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F12BFF57F700B42ECB /* UserDefaultService.swift */; };
-		6CE4F3F52BFF581900B42ECB /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F42BFF581900B42ECB /* UserDefaultManager.swift */; };
+		6CE4F3F22BFF57F700B42ECB /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F12BFF57F700B42ECB /* UserDefaultsService.swift */; };
+		6CE4F3F52BFF581900B42ECB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F42BFF581900B42ECB /* UserDefaultsManager.swift */; };
+		6CE4F3F82BFF5D0300B42ECB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */; };
+		6CE4F3FB2BFF5E2E00B42ECB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +41,12 @@
 		6CE4F3E92BFF57A400B42ECB /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6CE4F3EC2BFF57C000B42ECB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6CE4F3EF2BFF57E400B42ECB /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
-		6CE4F3F12BFF57F700B42ECB /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
-		6CE4F3F42BFF581900B42ECB /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		6CE4F3F12BFF57F700B42ECB /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		6CE4F3F42BFF581900B42ECB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		6CE4F4002BFF6DC300B42ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CE4F4022BFF704C00B42ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Lab4/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			children = (
 				6CE4F3CA2BFF559200B42ECB /* Lab4App.swift */,
 				6CE4F3CE2BFF559500B42ECB /* Assets.xcassets */,
+				6CE4F4002BFF6DC300B42ECB /* Info.plist */,
 				6CE4F3D02BFF559500B42ECB /* Preview Content */,
 				6CE4F3DC2BFF571200B42ECB /* UsersList */,
 				6CE4F3E12BFF574600B42ECB /* UserForm */,
@@ -83,6 +90,7 @@
 				6CE4F3EE2BFF57C400B42ECB /* Model */,
 				6CE4F3F32BFF57FC00B42ECB /* Services */,
 				6CE4F3F62BFF581D00B42ECB /* Data */,
+				6CE4F3F92BFF5D1200B42ECB /* Extensions */,
 			);
 			path = Lab4;
 			sourceTree = "<group>";
@@ -143,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				6CE4F3EF2BFF57E400B42ECB /* LocalizationService.swift */,
-				6CE4F3F12BFF57F700B42ECB /* UserDefaultService.swift */,
+				6CE4F3F12BFF57F700B42ECB /* UserDefaultsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -151,9 +159,19 @@
 		6CE4F3F62BFF581D00B42ECB /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6CE4F3F42BFF581900B42ECB /* UserDefaultManager.swift */,
+				6CE4F3F42BFF581900B42ECB /* UserDefaultsManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		6CE4F3F92BFF5D1200B42ECB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6CE4F4022BFF704C00B42ECB /* Info.plist */,
+				6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */,
+				6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,14 +246,16 @@
 			files = (
 				6CE4F3DE2BFF573000B42ECB /* UserFormView.swift in Sources */,
 				6CE4F3EA2BFF57A400B42ECB /* MapViewModel.swift in Sources */,
+				6CE4F3FB2BFF5E2E00B42ECB /* SearchBar.swift in Sources */,
 				6CE4F3F02BFF57E400B42ECB /* LocalizationService.swift in Sources */,
 				6CE4F3E52BFF577600B42ECB /* UserDetailViewModel.swift in Sources */,
 				6CE4F3DB2BFF570700B42ECB /* UsersListViewModel.swift in Sources */,
-				6CE4F3F52BFF581900B42ECB /* UserDefaultManager.swift in Sources */,
+				6CE4F3F52BFF581900B42ECB /* UserDefaultsManager.swift in Sources */,
 				6CE4F3E02BFF574100B42ECB /* UserFormViewModel.swift in Sources */,
 				6CE4F3E32BFF575F00B42ECB /* UserDetailView.swift in Sources */,
 				6CE4F3D92BFF56F300B42ECB /* UsersListView.swift in Sources */,
-				6CE4F3F22BFF57F700B42ECB /* UserDefaultService.swift in Sources */,
+				6CE4F3F22BFF57F700B42ECB /* UserDefaultsService.swift in Sources */,
+				6CE4F3F82BFF5D0300B42ECB /* DateFormatter.swift in Sources */,
 				6CE4F3E82BFF579400B42ECB /* MapView.swift in Sources */,
 				6CE4F3CB2BFF559200B42ECB /* Lab4App.swift in Sources */,
 				6CE4F3ED2BFF57C000B42ECB /* User.swift in Sources */,
@@ -372,6 +392,8 @@
 				DEVELOPMENT_TEAM = DS3WD6YJ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lab4/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Esta aplicación necesita acceso a su ubicación para obtener la ciudad actual.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -401,6 +423,8 @@
 				DEVELOPMENT_TEAM = DS3WD6YJ64;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lab4/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Esta aplicación necesita acceso a su ubicación para obtener la ciudad actual.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
