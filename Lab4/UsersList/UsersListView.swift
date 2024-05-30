@@ -8,8 +8,37 @@
 import SwiftUI
 
 struct UsersListView: View {
+    @StateObject var viewModel = UserListViewModel()
+    @State private var showingAddUser = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(viewModel.filteredUsers) { user in
+                    NavigationLink(destination: UserDetailView(user: user)) {
+                        Text(user.name)
+                    }
+                }
+                .onDelete(perform: viewModel.deleteUser)
+            }
+            .navigationTitle("Usuarios")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showingAddUser = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddUser) {
+                UserFormView(viewModel: UserFormViewModel())
+            }
+            .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Buscar usuarios")
+            .onAppear {
+                viewModel.loadUsers()
+            }
+        }
     }
 }
 
