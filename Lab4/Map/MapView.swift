@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
+    @StateObject var viewModel: MapViewModel
+
+        init(viewModel: MapViewModel) {
+            _viewModel = StateObject(wrappedValue: viewModel)
+        }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        Map(coordinateRegion: $viewModel.region)
+                 .navigationTitle("Mapa")
+         }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(viewModel: MapViewModel(city: "Madrid"))
     }
 }
