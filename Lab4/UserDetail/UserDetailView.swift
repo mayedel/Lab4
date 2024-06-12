@@ -12,7 +12,7 @@ struct UserDetailView: View {
     @State private var isEditing = false
     
     init(user: User) {
-        _viewModel = StateObject(wrappedValue: UserDetailViewModel(user: user))
+        _viewModel = StateObject(wrappedValue: UserDetailViewModel(user: user, updateUserUseCase: UpdateUserUseCase(userDefaultsService: UserDefaultsService())))
     }
     
     var body: some View {

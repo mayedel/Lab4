@@ -17,13 +17,16 @@ class UserFormViewModel: ObservableObject {
     @Published var location = ""
     var completion: (() -> Void)?
     
-    private let userDefaultsService: UserDefaultsService
-    private let localizationService: LocalizationService
-    
-    init(userDefaultsService: UserDefaultsService = UserDefaultsService(), localizationService: LocalizationService = LocalizationService()) {
-        self.userDefaultsService = userDefaultsService
-        self.localizationService = localizationService
-    }
+    private let saveUsersUseCase: SaveUsersUseCase
+    private let loadUsersUseCase: LoadUsersUseCase
+       private let localizationService: LocalizationService
+       
+       init(loadUsersUseCase: LoadUsersUseCase, saveUsersUseCase: SaveUsersUseCase, localizationService: LocalizationService = LocalizationService()) {
+           self.loadUsersUseCase = loadUsersUseCase
+           self.saveUsersUseCase = saveUsersUseCase
+           self.localizationService = localizationService
+       }
+       
     
     func fetchCurrentLocation() {
         localizationService.requestLocation { [weak self] location in
@@ -33,9 +36,12 @@ class UserFormViewModel: ObservableObject {
     
     func saveUser() {
         let newUser = User(name: name, favoriteColor: favoriteColor, birthDate: birthDate, favoriteCity: favoriteCity, favoriteNumber: favoriteNumber, location: location)
-        var users = userDefaultsService.loadUsers()
+        var users = loadUsersUseCase.execute()
         users.append(newUser)
-        userDefaultsService.saveUsers(users)
-        completion?()
+        saveUsersUseCase.execute(users: users)
+        //completion?()
+        
+        
+        
     }
 }

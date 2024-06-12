@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct UsersListView: View {
-    @StateObject var viewModel = UserListViewModel()
+    @StateObject var viewModel = UserListViewModel(loadUsersUseCase: LoadUsersUseCase(userDefaultsService: UserDefaultsService()), saveUsersUseCase: SaveUsersUseCase(userDefaultsService: UserDefaultsService()))
     @State private var showingAddUser = false
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.filteredUsers) { user in
+                ForEach(viewModel.users) { user in
                     NavigationLink(destination: UserDetailView(user: user)) {
                         Text(user.name)
                     }
@@ -32,7 +32,7 @@ struct UsersListView: View {
                 }
             }
             .sheet(isPresented: $showingAddUser) {
-                UserFormView(viewModel: UserFormViewModel())
+                UserFormView(viewModel: UserFormViewModel(loadUsersUseCase: LoadUsersUseCase(userDefaultsService: UserDefaultsService()), saveUsersUseCase: SaveUsersUseCase(userDefaultsService: UserDefaultsService())))
             }
             .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Buscar usuarios")
             .onAppear {

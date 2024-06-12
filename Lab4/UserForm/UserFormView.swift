@@ -41,6 +41,6 @@ struct UserFormView: View {
 
 struct UserFormView_Previews: PreviewProvider {
     static var previews: some View {
-        UserFormView(viewModel: UserFormViewModel())
+        UserFormView(viewModel: UserFormViewModel(loadUsersUseCase: LoadUsersUseCase(userDefaultsService: UserDefaultsService()), saveUsersUseCase: SaveUsersUseCase(userDefaultsService: UserDefaultsService())))
     }
 }

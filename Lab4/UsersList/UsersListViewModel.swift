@@ -12,26 +12,28 @@ class UserListViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var searchText: String = ""
     
-    private let userDefaultsService: UserDefaultsService
+    private let loadUsersUseCase: LoadUsersUseCase
+    private let saveUsersUseCase: SaveUsersUseCase
     
-    init(userDefaultsService: UserDefaultsService = UserDefaultsService()) {
-        self.userDefaultsService = userDefaultsService
+    init(loadUsersUseCase: LoadUsersUseCase, saveUsersUseCase: SaveUsersUseCase) {
+        self.loadUsersUseCase = loadUsersUseCase
+        self.saveUsersUseCase = saveUsersUseCase
         loadUsers()
     }
     
     func loadUsers() {
-        users = userDefaultsService.loadUsers()
+        self.users = loadUsersUseCase.execute()
     }
     
     func addUser(_ user: User) {
         users.append(user)
-        userDefaultsService.saveUsers(users)
+        saveUsersUseCase.execute(users: users)
         loadUsers()
     }
     
     func deleteUser(at offsets: IndexSet) {
         users.remove(atOffsets: offsets)
-        userDefaultsService.saveUsers(users)
+        saveUsersUseCase.execute(users: users)
         loadUsers()
     }
     
