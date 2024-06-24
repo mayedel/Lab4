@@ -8,17 +8,18 @@
 import Foundation
 import CoreLocation
 
-class LocalizationService: NSObject, CLLocationManagerDelegate {
+protocol LocalizationServiceProtocol {
+    func requestLocation(completion: @escaping (String, String?) -> Void)
+}
+
+
+class LocalizationService: NSObject, CLLocationManagerDelegate, LocalizationServiceProtocol {
     private let locationManager = CLLocationManager()
-    private var completion: ((String) -> Void)?
+    private var completion: ((String, String) -> Void)?
     
-//    override init() {
-//        super.init()
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//    }
     
-    func requestLocation(completion: @escaping (String) -> Void) {
+    
+    func requestLocation(completion: @escaping (String, String?) -> Void) {
         self.completion = completion
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -29,14 +30,31 @@ class LocalizationService: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+            guard let location = locations.first else { return }
             let locationString = "\(location.coordinate.latitude), \(location.coordinate.longitude)"
-            completion?(locationString)
+            
+            reverseGeocodeLocation(location) { [weak self] placeName in
+                self?.completion?(locationString, placeName ?? "")
+            }
         }
-    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get location: \(error.localizedDescription)")
     }
+    
+    private func reverseGeocodeLocation(_ location: CLLocation, completion: @escaping (String?) -> Void) {
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                if let error = error {
+                    print("Geocoding error: \(error)")
+                    completion(nil)
+                } else if let city = placemarks?.first?.locality {
+                    completion(city)
+                } else {
+                    completion("Unknown location")
+                }
+            }
+        }
+    
 }
 

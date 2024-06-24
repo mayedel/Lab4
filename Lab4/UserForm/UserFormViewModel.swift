@@ -14,23 +14,36 @@ class UserFormViewModel: ObservableObject {
     @Published var birthDate = Date()
     @Published var favoriteCity = ""
     @Published var favoriteNumber = 0
+    @Published var favoriteNumberText = ""
     @Published var location = ""
+    @Published var cityName: String?
     var completion: (() -> Void)?
     
     private let saveUsersUseCase: SaveUsersUseCase
     private let loadUsersUseCase: LoadUsersUseCase
-       private let localizationService: LocalizationService
-       
-       init(loadUsersUseCase: LoadUsersUseCase, saveUsersUseCase: SaveUsersUseCase, localizationService: LocalizationService = LocalizationService()) {
-           self.loadUsersUseCase = loadUsersUseCase
-           self.saveUsersUseCase = saveUsersUseCase
-           self.localizationService = localizationService
-       }
-       
+    private let localizationService: LocalizationServiceProtocol
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(loadUsersUseCase: LoadUsersUseCase, saveUsersUseCase: SaveUsersUseCase, localizationService: LocalizationServiceProtocol) {
+        self.loadUsersUseCase = loadUsersUseCase
+        self.saveUsersUseCase = saveUsersUseCase
+        self.localizationService = localizationService
+        
+        $favoriteNumberText
+            .map { Int($0) ?? 0 }
+            .assign(to: &$favoriteNumber)
+        
+    }
+    
+    
     
     func fetchCurrentLocation() {
-        localizationService.requestLocation { [weak self] location in
-            self?.location = location
+        localizationService.requestLocation { [weak self] location, city in
+            DispatchQueue.main.async {
+                self?.location = location
+                self?.cityName = city
+            }
         }
     }
     
@@ -39,7 +52,7 @@ class UserFormViewModel: ObservableObject {
         var users = loadUsersUseCase.execute()
         users.append(newUser)
         saveUsersUseCase.execute(users: users)
-        //completion?()
+        completion?()
         
         
         

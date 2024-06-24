@@ -31,9 +31,17 @@ struct UsersListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showingAddUser) {
-                UserFormView(viewModel: UserFormViewModel(loadUsersUseCase: LoadUsersUseCase(userDefaultsService: UserDefaultsService()), saveUsersUseCase: SaveUsersUseCase(userDefaultsService: UserDefaultsService())))
+            .sheet(isPresented: $showingAddUser, onDismiss: {
+                viewModel.loadUsers()
+            }) {
+                UserFormView(viewModel: UserFormViewModel(
+                       loadUsersUseCase: LoadUsersUseCase(userDefaultsService: UserDefaultsService()),
+                       saveUsersUseCase: SaveUsersUseCase(userDefaultsService: UserDefaultsService()),
+                       localizationService: LocalizationService()
+                   ))
             }
+            
+            
             .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Buscar usuarios")
             .onAppear {
                 viewModel.loadUsers()

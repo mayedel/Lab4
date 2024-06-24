@@ -14,7 +14,7 @@ class MapViewModel: ObservableObject {
     
     init(city: String) {
         self.region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 40.416775, longitude: -3.703790), // Default to Madrid
+            center: CLLocationCoordinate2D(latitude: 40.416775, longitude: -3.703790),
             span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )
         getCoordinate(for: city) { coordinate in
