@@ -25,8 +25,6 @@
 		6CE4F3F02BFF57E400B42ECB /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3EF2BFF57E400B42ECB /* LocalizationService.swift */; };
 		6CE4F3F22BFF57F700B42ECB /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F12BFF57F700B42ECB /* UserDefaultsService.swift */; };
 		6CE4F3F52BFF581900B42ECB /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F42BFF581900B42ECB /* UserDefaultsManager.swift */; };
-		6CE4F3F82BFF5D0300B42ECB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */; };
-		6CE4F3FB2BFF5E2E00B42ECB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,8 +47,6 @@
 		6CE4F3EF2BFF57E400B42ECB /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		6CE4F3F12BFF57F700B42ECB /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		6CE4F3F42BFF581900B42ECB /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		6CE4F4002BFF6DC300B42ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CE4F4022BFF704C00B42ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Lab4/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -96,7 +92,7 @@
 				6CE4F3EE2BFF57C400B42ECB /* Model */,
 				6CE4F3F32BFF57FC00B42ECB /* Services */,
 				6CE4F3F62BFF581D00B42ECB /* Data */,
-				6CE4F3F92BFF5D1200B42ECB /* Extensions */,
+				6CE4F4022BFF704C00B42ECB /* Info.plist */,
 			);
 			path = Lab4;
 			sourceTree = "<group>";
@@ -173,16 +169,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		6CE4F3F92BFF5D1200B42ECB /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				6CE4F4022BFF704C00B42ECB /* Info.plist */,
-				6CE4F3F72BFF5D0300B42ECB /* DateFormatter.swift */,
-				6CE4F3FA2BFF5E2E00B42ECB /* SearchBar.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -255,7 +241,6 @@
 			files = (
 				6CE4F3DE2BFF573000B42ECB /* UserFormView.swift in Sources */,
 				6CE4F3EA2BFF57A400B42ECB /* MapViewModel.swift in Sources */,
-				6CE4F3FB2BFF5E2E00B42ECB /* SearchBar.swift in Sources */,
 				6CE4F3F02BFF57E400B42ECB /* LocalizationService.swift in Sources */,
 				6CE4F3E52BFF577600B42ECB /* UserDetailViewModel.swift in Sources */,
 				6CE4F3DB2BFF570700B42ECB /* UsersListViewModel.swift in Sources */,
@@ -266,7 +251,6 @@
 				6C4A09902C1A17BB00F2D7BC /* LoadUsersUseCase .swift in Sources */,
 				6CE4F3D92BFF56F300B42ECB /* UsersListView.swift in Sources */,
 				6CE4F3F22BFF57F700B42ECB /* UserDefaultsService.swift in Sources */,
-				6CE4F3F82BFF5D0300B42ECB /* DateFormatter.swift in Sources */,
 				6C4A098E2C1A17A100F2D7BC /* SaveUsersUseCase .swift in Sources */,
 				6CE4F3E82BFF579400B42ECB /* MapView.swift in Sources */,
 				6CE4F3CB2BFF559200B42ECB /* Lab4App.swift in Sources */,
