@@ -11,7 +11,11 @@ import Combine
 class UserFormViewModel: ObservableObject {
     @Published var name = ""
     @Published var favoriteColor = ""
-    @Published var birthDate = Date()
+    @Published var birthDate = Date() {
+        didSet {
+            validateBirthDate()
+        }
+    }
     @Published var favoriteCity = ""
     @Published var favoriteNumber = 0
     @Published var favoriteNumberText = ""
@@ -29,14 +33,26 @@ class UserFormViewModel: ObservableObject {
         self.loadUsersUseCase = loadUsersUseCase
         self.saveUsersUseCase = saveUsersUseCase
         self.localizationService = localizationService
-        
+        setupBindings()
+    }
+    
+    private func setupBindings() {
         $favoriteNumberText
             .map { Int($0) ?? 0 }
             .assign(to: &$favoriteNumber)
-        
     }
     
-    
+    private func validateBirthDate() {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let earliestDate = calendar.date(byAdding: .year, value: -120, to: currentDate) ?? currentDate
+        
+        if birthDate > currentDate {
+            birthDate = currentDate
+        } else if birthDate < earliestDate {
+            birthDate = earliestDate
+        }
+    }
     
     func fetchCurrentLocation() {
         localizationService.requestLocation { [weak self] location, city in

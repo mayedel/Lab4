@@ -19,6 +19,7 @@ struct UserFormView: View {
                     TextField("Nombre", text: $viewModel.name)
                     TextField("Color Preferido", text: $viewModel.favoriteColor)
                     DatePicker("Fecha de Nacimiento", selection: $viewModel.birthDate, displayedComponents: .date)
+                         .datePickerStyle(CompactDatePickerStyle())
                     TextField("Ciudad Favorita", text: $viewModel.favoriteCity)
                     TextField("Número Favorito", text: $viewModel.favoriteNumberText).keyboardType(.numberPad)
                     TextField("Localización Actual", text: $viewModel.location)
